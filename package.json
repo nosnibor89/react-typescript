@@ -1,0 +1,11 @@
+{
+  "name": "react-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified, Robinson what are you doing ?? \" && exit 1"
+  },
+  "author": "Robinson Marquez",
+  "license": "ISC"
+}
