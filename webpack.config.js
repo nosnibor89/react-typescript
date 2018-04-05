@@ -7,9 +7,15 @@ module.exports = {
         filename: 'bundle.js'
     },
     module: {
-
+        rules: [
+            {
+                test: /\.tsx?$/,
+                loader: 'awesome-typescript-loader'
+            }
+        ]
     },
     plugins: [
 
-    ]
+    ],
+    mode: 'development'
 }
