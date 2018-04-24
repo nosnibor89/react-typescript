@@ -1,8 +1,10 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry: './src/index.tsx',
-    output:{
+    output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'bundle.js'
     },
@@ -11,11 +13,39 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 loader: 'awesome-typescript-loader'
+            }, {
+                enforce: 'pre',
+                test: /\.js$/,
+                loader: 'source-map-loader'
+
+            }, {
+                test: /\.scss$/,
+                use: ExtractTextPlugin.extract({
+                    // use: [
+                    //     {
+                    //         loader: 'css-loader',
+                    //         options: {
+                    //             minimize: true
+                    //         }
+                    //     },
+                    //     'sass-loader'
+                    // ]
+                    // fallback: 'style-loader',
+                    use: ['css-loader', 'sass-loader']
+                })
             }
         ]
     },
     plugins: [
-
+        new HtmlWebpackPlugin({
+            template: './index.html'
+        }),
+        new ExtractTextPlugin('style.css')
     ],
-    mode: 'development'
+    devtool: 'source-map',
+    mode: 'development',
+    resolve: {
+        extensions: ['.js', '.ts', '.tsx']
+    }
+
 }
